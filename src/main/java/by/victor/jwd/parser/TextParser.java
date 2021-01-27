@@ -1,8 +1,11 @@
 package by.victor.jwd.parser;
 
 import by.victor.jwd.entity.*;
+import by.victor.jwd.parser.functions.InterrogativeFixedLengthWordsFunction;
 import by.victor.jwd.parser.functions.SameWordsFunction;
-import by.victor.jwd.parser.functions.SortSentencesByWordsCount;
+import by.victor.jwd.parser.functions.SortSentencesByWordsCountFunction;
+import by.victor.jwd.parser.functions.UniqueWordFunction;
+import by.victor.jwd.server.utils.PropertyLoader;
 
 import java.text.BreakIterator;
 import java.util.*;
@@ -10,15 +13,20 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TextParser {
+
     private static Map<Integer,RequestFunction> functionsMap = new HashMap<>();
+    private static final String WORD_PATTERN = PropertyLoader.loadProperty("patterns.xml","word");
+    private static final String CODE_DELIMITER_PATTERN = PropertyLoader.loadProperty("patterns.xml","code_delimiter");
 
     static {
         functionsMap.put(1, new SameWordsFunction());
-        functionsMap.put(2, new SortSentencesByWordsCount());
+        functionsMap.put(2, new SortSentencesByWordsCountFunction());
+        functionsMap.put(3, new UniqueWordFunction());
+        functionsMap.put(4, new InterrogativeFixedLengthWordsFunction());
     }
 
     public static String parseByRequest (RequestObject requestObject, String text){
-        if (requestObject.getTaskId()  < 0 || requestObject.getTaskId() > 2) {
+        if (requestObject.getTaskId()  < 0 || requestObject.getTaskId() > 16) {
             return "";
         }
         Text textObject = createTextObject(text);
@@ -37,7 +45,7 @@ public class TextParser {
         for (String sentence : sentList) {
             boundary = BreakIterator.getWordInstance(Locale.US);
             boundary.setText(sentence);
-            List<String> wordsList = splitByFragments(boundary,sentence,"[a-zA-Z-]+");
+            List<String> wordsList = splitByFragments(boundary,sentence,WORD_PATTERN);
             Sentence sentenceObject = new Sentence(sentence);
             for (String word : wordsList) {
                 TextFragment wordObject = new Word(word, Arrays.asList(word.split("")));
@@ -50,7 +58,7 @@ public class TextParser {
 
     private static List<String> splitCodeAndText(String text, StringBuilder textBuilder){
         List<String> codeBlocks = new LinkedList<>();
-        Pattern pattern = Pattern.compile("-{3,}");
+        Pattern pattern = Pattern.compile(CODE_DELIMITER_PATTERN);
         Matcher matcher = pattern.matcher(text);
         int textStart = 0;
         while (matcher.find()){
@@ -71,7 +79,7 @@ public class TextParser {
         for (int end = boundary.next();
              end != BreakIterator.DONE;
              start = end, end = boundary.next()) {
-            fragmentsList.add(source.substring(start,end));
+             fragmentsList.add(source.substring(start,end));
         }
         return fragmentsList;
     }

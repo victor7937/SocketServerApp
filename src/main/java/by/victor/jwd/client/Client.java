@@ -1,11 +1,9 @@
 package by.victor.jwd.client;
 
 import by.victor.jwd.entity.RequestObject;
-
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
+
 
 public class Client {
     private static final int port = 4040;
@@ -36,7 +34,7 @@ public class Client {
 
     public static void main(String[] args) {
         Client client = new Client();
-        RequestObject ro = new RequestObject(2);
+        RequestObject ro = new RequestObject(4,"4");
         System.out.println(client.sendRequest(ro));
     }
 

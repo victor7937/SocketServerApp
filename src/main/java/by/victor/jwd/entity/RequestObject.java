@@ -1,6 +1,7 @@
 package by.victor.jwd.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class RequestObject implements Serializable {
 
@@ -31,5 +32,19 @@ public class RequestObject implements Serializable {
 
     public void setTaskParam(String taskParam) {
         this.taskParam = taskParam;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RequestObject that = (RequestObject) o;
+        return taskId == that.taskId &&
+                Objects.equals(taskParam, that.taskParam);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(taskId, taskParam);
     }
 }

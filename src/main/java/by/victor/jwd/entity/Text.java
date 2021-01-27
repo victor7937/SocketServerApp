@@ -2,6 +2,7 @@ package by.victor.jwd.entity;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Text implements TextFragment{
@@ -16,9 +17,7 @@ public class Text implements TextFragment{
         this.sentences = new LinkedList<>();
     }
 
-    public List<String> getCodeBlocks() {
-        return codeBlocks;
-    }
+    public List<String> getCodeBlocks() { return codeBlocks; }
 
     @Override
     public String getTextForm() {
@@ -46,5 +45,20 @@ public class Text implements TextFragment{
 
     public void removeSentence (TextFragment textFragment){
         sentences.remove(textFragment);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Text text = (Text) o;
+        return Objects.equals(textForm, text.textForm) &&
+                Objects.equals(codeBlocks, text.codeBlocks) &&
+                Objects.equals(sentences, text.sentences);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(textForm, codeBlocks, sentences);
     }
 }

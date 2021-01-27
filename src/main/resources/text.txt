@@ -3,7 +3,7 @@ refers to the local variable. In the rest of the Game class, “count” refers 
 by other local variables or parameters named count. However, there is
 one further complication. The member variable named count can also be referred to by the
 full name Game.count. Usually, the full name is only used outside the class where count is
-defined. However, there is no rule against using it inside the class. The full name, Game.count,
+defined. However, there is no rule against using it inside the class? The full name, Game.count,
 can be used inside the playGame() subroutine to refer to the member variable. So, the full
 scope rule is that the scope of a static member variable includes the entire class in which it
 is defined, but where the simple name of the member variable is hidden by a local variable
@@ -54,7 +54,7 @@ the main() routine. It’s a good idea to think of the parentheses as part of th
 more is true: It’s legal to reuse class names to name variables and subroutines. The syntax
 rules of Java guarantee that the computer can always tell when a name is being used as a class
 name. A class name is a type, and so it can be used to declare variables and formal parameters
-and to specify the return type of a function. This means that you could legally have a class
+and to specify the return type of a function? This means that you could legally have a class
 called Insanity in which you declare a function.
 
 -------------------------------------------------------
