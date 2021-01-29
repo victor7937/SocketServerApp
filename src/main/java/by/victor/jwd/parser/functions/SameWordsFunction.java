@@ -13,14 +13,29 @@ public class SameWordsFunction implements RequestFunction {
 
     @Override
     public String apply(Text textObject, String params) {
-        List<TextFragment> sentences = textObject.getFragmentsForm();
-        int sentenceCounter = 0;
+       List<TextFragment> uniqueWords = textObject.getWordsList();
+       List<TextFragment> sentences = textObject.getFragmentsForm();
+       int sameWordsSentencesMaxCount = 0;
+
+       for (TextFragment word : uniqueWords){
+           int sameWordsSentencesCount = countSentencesHaveWord(sentences, word);
+           if (sameWordsSentencesCount > sameWordsSentencesMaxCount) {
+               sameWordsSentencesMaxCount = sameWordsSentencesCount;
+           }
+       }
+
+       return Integer.toString(sameWordsSentencesMaxCount);
+
+    }
+
+    private static int countSentencesHaveWord (List<TextFragment> sentences, TextFragment word){
+        int sameWordsSentencesCount = 0;
         for (TextFragment sentence : sentences) {
-            if (sentence.getFragmentsForm().size() != new HashSet<>(sentence.getFragmentsForm()).size()){
-                sentenceCounter++;
+            if(sentence.getFragmentsForm().contains(word)){
+                sameWordsSentencesCount++;
             }
         }
-        return Integer.toString(sentenceCounter);
+        return sameWordsSentencesCount;
     }
 
 

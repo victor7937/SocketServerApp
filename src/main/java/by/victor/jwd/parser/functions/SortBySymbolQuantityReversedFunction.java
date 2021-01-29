@@ -8,7 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SortBySymbolQuantityFunction implements RequestFunction {
+public class SortBySymbolQuantityReversedFunction implements RequestFunction {
 
     private static final int PARAM_LENGTH = 1;
 
@@ -19,7 +19,7 @@ public class SortBySymbolQuantityFunction implements RequestFunction {
 
         List<TextFragment> words = textObject.getWordsList();
         words.sort(Comparator.comparingLong((TextFragment w) -> w.toStringList().stream()
-                .filter(symbol -> symbol.equals(params)).count()).thenComparing(TextFragment::getTextForm));
+                .filter(symbol -> symbol.equals(params)).count()).reversed().thenComparing(TextFragment::getTextForm));
         return words.stream().map(word -> word.getTextForm() + "\n").collect(Collectors.joining());
     }
 }

@@ -3,15 +3,16 @@ package by.victor.jwd.parser.functions;
 import by.victor.jwd.entity.Text;
 import by.victor.jwd.entity.TextFragment;
 import by.victor.jwd.parser.RequestFunction;
+import by.victor.jwd.server.utils.PropertyLoader;
 
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class SortByVowelsRatioFunction implements RequestFunction {
 
-    private static final String vowels = "aeiouAEIOU";
+    private static final String VOWELS = PropertyLoader.
+            loadProperty("patterns.xml","vowels");;
 
     @Override
     public String apply(Text textObject, String params) {
@@ -23,7 +24,7 @@ public class SortByVowelsRatioFunction implements RequestFunction {
     private static Double countVowelsRatio (TextFragment word){
         int vowelsCount = 0;
         for (char letter : word.getTextForm().toCharArray()){
-            if (vowels.indexOf(letter) >= 0){
+            if (VOWELS.indexOf(letter) >= 0){
                 vowelsCount++;
             }
         }

@@ -28,6 +28,9 @@ public class TextParser {
         functionsMap.put(9, new SortBySymbolQuantityFunction());
         functionsMap.put(10, new SortGivenWordsByFrequency());
         functionsMap.put(11, new GreedyDeleteFunction());
+        functionsMap.put(12, new DeleteGivenLengthWords());
+        functionsMap.put(13, new SortBySymbolQuantityReversedFunction());
+        functionsMap.put(14, new LongestPalindromeFunction());
     }
 
     public static String parseByRequest (RequestObject requestObject, String text){
