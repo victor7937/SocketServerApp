@@ -2,7 +2,7 @@
 refers to the local variable. In the rest of the Game class, “count” refers to the member variable, unless hidden
 by other local variables or parameters named count. However, there is
 one further complication. The member variable named count can also be referred to by the
-full name Game.count. Usually, the full name is only used outside the class where count is
+full name. Usually, the full name is only used outside the class where count is
 defined. However, there is no rule against using it inside the class? The full name, Game.count,
 can be used inside the playGame() subroutine to refer to the member variable. So, the full
 scope rule is that the scope of a static member variable includes the entire class in which it
@@ -49,8 +49,8 @@ happen, for a reason that might be surprising. There is no rule that variables a
 have to have different names. The computer can always tell whether a name refers to a variable
 or to a subroutine, because a subroutine name is always followed by a left parenthesis. It’s
 perfectly legal to have a variable called count and a subroutine called count in the same class.
-(This is one reason why I often write subroutine names with parentheses, as when I talk about
-the main() routine. It’s a good idea to think of the parentheses as part of the name.) Even
+This is one reason why I often write subroutine names with parentheses, as when I talk about
+the main() routine. It’s a good idea to think of the parentheses as part of the name. Even
 more is true: It’s legal to reuse class names to name variables and subroutines. The syntax
 rules of Java guarantee that the computer can always tell when a name is being used as a class
 name. A class name is a type, and so it can be used to declare variables and formal parameters

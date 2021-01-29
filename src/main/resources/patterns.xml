@@ -4,4 +4,7 @@
     <entry key="word">[a-zA-Z-']+</entry>
     <entry key="code_delimiter">-{3,}</entry>
     <entry key="interrogative">[a-zA-Z-']+\s*\?\s*$</entry>
+    <entry key="middle_sentence">([.[^\.]]+)</entry>
+    <entry key="some_symbols_between">([.[^\.]]*)</entry>
+    <entry key="end_sentence">(\s*[\.\?!]\s*$)</entry>
 </properties>

@@ -11,6 +11,7 @@ public class UniqueWordFunction implements RequestFunction {
     public UniqueWordFunction() {}
 
     private final static int FIRST_SENTENCE_INDEX = 0;
+    private final static String NO_RESULT_MSG = "No such words";
 
     @Override
     public String apply(Text textObject, String params) {
@@ -30,6 +31,6 @@ public class UniqueWordFunction implements RequestFunction {
                 return word.getTextForm();
             }
         }
-        return "No such words";
+        return NO_RESULT_MSG;
     }
 }

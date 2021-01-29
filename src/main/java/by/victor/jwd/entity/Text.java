@@ -39,6 +39,11 @@ public class Text implements TextFragment{
         return sentences.size();
     }
 
+    public List<TextFragment> getWordsList () {
+        return sentences.stream().map(TextFragment::getFragmentsForm).
+                flatMap(List<TextFragment>::stream).distinct().collect(Collectors.toList());
+    }
+
     public void addSentence (TextFragment textFragment){
         sentences.add(textFragment);
     }

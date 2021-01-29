@@ -1,10 +1,7 @@
 package by.victor.jwd.parser;
 
 import by.victor.jwd.entity.*;
-import by.victor.jwd.parser.functions.InterrogativeFixedLengthWordsFunction;
-import by.victor.jwd.parser.functions.SameWordsFunction;
-import by.victor.jwd.parser.functions.SortSentencesByWordsCountFunction;
-import by.victor.jwd.parser.functions.UniqueWordFunction;
+import by.victor.jwd.parser.functions.*;
 import by.victor.jwd.server.utils.PropertyLoader;
 
 import java.text.BreakIterator;
@@ -14,7 +11,8 @@ import java.util.regex.Pattern;
 
 public class TextParser {
 
-    private static Map<Integer,RequestFunction> functionsMap = new HashMap<>();
+    private static Map<Integer, RequestFunction> functionsMap = new HashMap<>();
+
     private static final String WORD_PATTERN = PropertyLoader.loadProperty("patterns.xml","word");
     private static final String CODE_DELIMITER_PATTERN = PropertyLoader.loadProperty("patterns.xml","code_delimiter");
 
@@ -23,6 +21,13 @@ public class TextParser {
         functionsMap.put(2, new SortSentencesByWordsCountFunction());
         functionsMap.put(3, new UniqueWordFunction());
         functionsMap.put(4, new InterrogativeFixedLengthWordsFunction());
+        functionsMap.put(5, new SwapFirstWithLastFunction());
+        functionsMap.put(6, new SortAllWordsAlphabeticallyFunction());
+        functionsMap.put(7, new SortByVowelsRatioFunction());
+        functionsMap.put(8, new SortVowelBeginningWordsFunction());
+        functionsMap.put(9, new SortBySymbolQuantityFunction());
+        functionsMap.put(10, new SortGivenWordsByFrequency());
+        functionsMap.put(11, new GreedyDeleteFunction());
     }
 
     public static String parseByRequest (RequestObject requestObject, String text){
@@ -73,7 +78,7 @@ public class TextParser {
         textBuilder.append(text, textStart, text.length());
         return codeBlocks;
     }
-    private static List<String> splitByFragments(BreakIterator boundary, String source) {
+    public static List<String> splitByFragments(BreakIterator boundary, String source) {
         int start = boundary.first();
         List<String> fragmentsList = new LinkedList<>();
         for (int end = boundary.next();
@@ -84,7 +89,7 @@ public class TextParser {
         return fragmentsList;
     }
 
-    private static List<String> splitByFragments(BreakIterator boundary, String source, String fragmentPattern) {
+    public static List<String> splitByFragments(BreakIterator boundary, String source, String fragmentPattern) {
         int start = boundary.first();
         List<String> fragmentsList = new LinkedList<>();
         for (int end = boundary.next();
