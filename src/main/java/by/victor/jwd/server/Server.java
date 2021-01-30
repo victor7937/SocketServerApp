@@ -12,6 +12,7 @@ import java.net.Socket;
 import java.net.URISyntaxException;
 
 public class Server extends Thread {
+
     private static final int port = 4040;
     private ServerSocket serverSocket;
     private boolean exitFlag = true;

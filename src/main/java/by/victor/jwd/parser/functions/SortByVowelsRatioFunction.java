@@ -11,13 +11,13 @@ import java.util.stream.Collectors;
 
 public class SortByVowelsRatioFunction implements RequestFunction {
 
-    private static final String VOWELS = PropertyLoader.
-            loadProperty("patterns.xml","vowels");;
+    private static final String VOWELS = PropertyLoader.loadProperty("patterns.xml","vowels");;
 
     @Override
     public String apply(Text textObject, String params) {
         List<TextFragment> words = textObject.getWordsList();
         words.sort(Comparator.comparingDouble(SortByVowelsRatioFunction::countVowelsRatio));
+
         return words.stream().map(word -> word.getTextForm() + "\n").collect(Collectors.joining());
     }
 

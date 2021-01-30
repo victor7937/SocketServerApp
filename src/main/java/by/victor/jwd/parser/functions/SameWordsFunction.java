@@ -4,12 +4,9 @@ import by.victor.jwd.entity.Text;
 import by.victor.jwd.entity.TextFragment;
 import by.victor.jwd.parser.RequestFunction;
 
-import java.util.HashSet;
 import java.util.List;
 
 public class SameWordsFunction implements RequestFunction {
-
-    public SameWordsFunction () {}
 
     @Override
     public String apply(Text textObject, String params) {

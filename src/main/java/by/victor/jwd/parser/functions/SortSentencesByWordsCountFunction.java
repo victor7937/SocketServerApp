@@ -16,6 +16,7 @@ public class SortSentencesByWordsCountFunction implements RequestFunction {
     public String apply(Text textObject, String params) {
         List<TextFragment> sentences = textObject.getFragmentsForm();
         sentences.sort(Comparator.comparingInt(TextFragment::fragmentsCount));
+
         return sentences.stream().map(sentence -> sentence.getTextForm() + "\n").collect(Collectors.joining());
     }
 }

@@ -31,6 +31,8 @@ public class TextParser {
         functionsMap.put(12, new DeleteGivenLengthWords());
         functionsMap.put(13, new SortBySymbolQuantityReversedFunction());
         functionsMap.put(14, new LongestPalindromeFunction());
+        functionsMap.put(15, new DeleteFirstAndLastLetterSymbolsFunction());
+        functionsMap.put(16, new SwapWordsWithStringGivenFunction());
     }
 
     public static String parseByRequest (RequestObject requestObject, String text){
@@ -38,6 +40,7 @@ public class TextParser {
             return "";
         }
         Text textObject = createTextObject(text);
+
         return functionsMap.get(requestObject.getTaskId()).apply(textObject, requestObject.getTaskParam());
     }
 
@@ -61,6 +64,7 @@ public class TextParser {
             }
             textObject.addSentence(sentenceObject);
         }
+
         return textObject;
     }
 
@@ -69,6 +73,7 @@ public class TextParser {
         Pattern pattern = Pattern.compile(CODE_DELIMITER_PATTERN);
         Matcher matcher = pattern.matcher(text);
         int textStart = 0;
+
         while (matcher.find()){
             int codeStart = matcher.end();
             int textEnds = matcher.start();
@@ -78,6 +83,7 @@ public class TextParser {
                 textStart = matcher.end();
             }
         }
+
         textBuilder.append(text, textStart, text.length());
         return codeBlocks;
     }

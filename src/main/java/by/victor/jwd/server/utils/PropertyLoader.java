@@ -9,6 +9,7 @@ public class PropertyLoader {
     public static String loadProperty (String fileName, String key){
         Properties properties = new Properties();
         boolean errorKey = false;
+
         try {
             ClassLoader classloader = Thread.currentThread().getContextClassLoader();
             InputStream is = classloader.getResourceAsStream(fileName);
@@ -19,6 +20,7 @@ public class PropertyLoader {
         if (errorKey) {
            return null;
         }
+
         return properties.getProperty(key);
     }
 }

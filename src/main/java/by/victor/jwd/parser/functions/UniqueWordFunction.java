@@ -31,6 +31,7 @@ public class UniqueWordFunction implements RequestFunction {
                 return word.getTextForm();
             }
         }
+
         return NO_RESULT_MSG;
     }
 }

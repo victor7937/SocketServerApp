@@ -12,9 +12,7 @@ import java.util.regex.Pattern;
 
 public class InterrogativeFixedLengthWordsFunction implements RequestFunction {
 
-    private final static String INTERROGATIVE_PATTERN = PropertyLoader.
-            loadProperty("patterns.xml","interrogative");
-
+    private final static String INTERROGATIVE_PATTERN = PropertyLoader.loadProperty("patterns.xml","interrogative");
     private int fixedLength;
 
     @Override

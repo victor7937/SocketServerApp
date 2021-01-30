@@ -20,6 +20,7 @@ public class SortBySymbolQuantityFunction implements RequestFunction {
         List<TextFragment> words = textObject.getWordsList();
         words.sort(Comparator.comparingLong((TextFragment w) -> w.toStringList().stream()
                 .filter(symbol -> symbol.equals(params)).count()).thenComparing(TextFragment::getTextForm));
+
         return words.stream().map(word -> word.getTextForm() + "\n").collect(Collectors.joining());
     }
 }

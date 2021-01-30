@@ -6,43 +6,42 @@ import by.victor.jwd.parser.RequestFunction;
 import java.util.List;
 
 public class LongestPalindromeFunction implements RequestFunction {
+
     @Override
     public String apply(Text textObject, String params) {
         List<String> sentences = textObject.toStringList();
-        String longest_palindrome = "";
+        String longestPalindrome = "";
+
         for (String sentence : sentences) {
-            String current_palindrome = findTheLongestPalindrome(sentence);
-            if (current_palindrome.length() > longest_palindrome.length()) {
-                longest_palindrome = current_palindrome;
+            String currentPalindrome = findTheLongestPalindrome(sentence);
+            if (currentPalindrome.length() > longestPalindrome.length()) {
+                longestPalindrome = currentPalindrome;
             }
         }
-        return findTheLongestPalindrome(textObject.getTextForm());
+
+        return longestPalindrome;
     }
 
-    private static String findTheLongestPalindrome(String str){
-
-        String longestPalindrome = String.valueOf(str.charAt(0));
-        for (int i = 0; i < str.length() - 1; i++) {
-            String returnedPalindrome = findLongestPalindromeWithParams(str, i, i);
-            if (returnedPalindrome.length() > longestPalindrome.length()) {
-                longestPalindrome = returnedPalindrome;
+    private static String findTheLongestPalindrome(String stringForSearch){
+        String longestPalindrome = String.valueOf(stringForSearch.charAt(0));
+        for (int i = 0; i < stringForSearch.length() - 1; i++) {
+            String currentPalindrome = findLongestPalindromeWithParams(stringForSearch, i, i);
+            if (currentPalindrome.length() > longestPalindrome.length()) {
+                longestPalindrome = currentPalindrome;
             }
-            returnedPalindrome = findLongestPalindromeWithParams(str, i, i + 1);
-            if (returnedPalindrome.length() > longestPalindrome.length()) {
-                longestPalindrome = returnedPalindrome;
+            currentPalindrome = findLongestPalindromeWithParams(stringForSearch, i, i + 1);
+            if (currentPalindrome.length() > longestPalindrome.length()) {
+                longestPalindrome = currentPalindrome;
             }
         }
         return longestPalindrome;
     }
 
-    private static String findLongestPalindromeWithParams(String str, int left, int right) {
-        if (left > right)
-            return null;
-
-        while (left >= 0 && right < str.length() && str.charAt(left) == str.charAt(right)) {
+    private static String findLongestPalindromeWithParams(String stringForSearch, int left, int right) {
+        while (left >= 0 && right < stringForSearch.length() && stringForSearch.charAt(left) == stringForSearch.charAt(right)) {
             left--;
             right++;
         }
-        return str.substring(left + 1, right);
+        return stringForSearch.substring(left + 1, right);
     }
 }

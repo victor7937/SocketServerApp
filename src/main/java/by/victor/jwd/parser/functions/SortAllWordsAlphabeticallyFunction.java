@@ -21,6 +21,7 @@ public class SortAllWordsAlphabeticallyFunction implements RequestFunction {
             }
             wordsStringBuilder.append(words.get(i).getTextForm()).append(" ");
         }
+
         return wordsStringBuilder.toString();
     }
 }

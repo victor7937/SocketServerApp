@@ -12,13 +12,10 @@ import java.util.stream.Collectors;
 public class DeleteGivenLengthWords implements RequestFunction {
 
     private static final String NUMBERS_PATTERN = "\\d+";
-    private static final String SPACES_PATTERN = "(\\s+)";
     private static final String REPLACEMENT = "$1$3";
-    private static final String VOWELS = PropertyLoader.
-            loadProperty("patterns.xml","vowels");
-    private static final String AFTER_WORD_PATTERN = PropertyLoader.
-            loadProperty("patterns.xml","after_word");
-
+    private static final String VOWELS = PropertyLoader.loadProperty("patterns.xml","vowels");
+    private static final String BEFORE_WORD_PATTERN = PropertyLoader.loadProperty("patterns.xml","before_word");
+    private static final String AFTER_WORD_PATTERN = PropertyLoader.loadProperty("patterns.xml","after_word");
 
     @Override
     public String apply(Text textObject, String params) {
@@ -32,9 +29,8 @@ public class DeleteGivenLengthWords implements RequestFunction {
                 .collect(Collectors.toList());
 
         String fullText = textObject.getTextForm();
-
         for (String word : words) {
-            fullText = Pattern.compile(SPACES_PATTERN + "(" + word + ")" + AFTER_WORD_PATTERN).matcher(fullText)
+            fullText = Pattern.compile(BEFORE_WORD_PATTERN + "(" + word + ")" + AFTER_WORD_PATTERN).matcher(fullText)
                     .replaceAll(REPLACEMENT);
         }
 

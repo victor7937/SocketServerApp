@@ -1,5 +1,5 @@
-    In the statements that make up the body of the playGame() subroutine, the name “count”
-refers to the local variable. In the rest of the Game class, “count” refers to the member variable, unless hidden
+    In the statements that make up the body of the playGame() subroutine, the name count
+refers to the local variable. In the rest of the Game class, count refers to the member variable, unless hidden
 by other local variables or parameters named count. However, there is
 one further complication. The member variable named count can also be referred to by the
 full name. Usually, the full name is only used outside the class where count is

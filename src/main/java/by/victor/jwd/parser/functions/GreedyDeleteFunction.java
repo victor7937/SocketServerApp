@@ -11,8 +11,7 @@ import java.util.regex.Pattern;
 public class GreedyDeleteFunction implements RequestFunction {
 
     private final static int SYMBOLS_COUNT = 2;
-    private final static String SOME_SYMBOLS_BETWEEN_PATTERN = PropertyLoader
-            .loadProperty("patterns.xml","some_symbols_between");
+    private final static String SOME_SYMBOLS_BETWEEN_PATTERN = PropertyLoader.loadProperty("patterns.xml","some_symbols_between");
 
     @Override
     public String apply(Text textObject, String params) {
@@ -24,10 +23,10 @@ public class GreedyDeleteFunction implements RequestFunction {
         List<TextFragment> sentences = textObject.getFragmentsForm();
         StringBuilder resultSentencesBuilder = new StringBuilder();
         for (TextFragment sentence : sentences){
-            resultSentencesBuilder.append(Pattern.compile(symbols[0] + SOME_SYMBOLS_BETWEEN_PATTERN +
-                    symbols[1]).matcher(sentence.getTextForm()).replaceFirst(""))
-                    .append("\n");
+            resultSentencesBuilder.append(Pattern.compile(symbols[0] + SOME_SYMBOLS_BETWEEN_PATTERN + symbols[1])
+                    .matcher(sentence.getTextForm()).replaceFirst("")).append("\n");
         }
+
         return resultSentencesBuilder.toString();
     }
 }

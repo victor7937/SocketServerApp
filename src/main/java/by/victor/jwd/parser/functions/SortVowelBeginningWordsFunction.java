@@ -11,16 +11,15 @@ import java.util.stream.Collectors;
 
 public class SortVowelBeginningWordsFunction implements RequestFunction {
 
-    private static final String VOWELS = PropertyLoader.
-            loadProperty("patterns.xml","vowels");;
+    private static final String VOWELS = PropertyLoader.loadProperty("patterns.xml","vowels");;
 
     @Override
     public String apply(Text textObject, String params) {
-        List<TextFragment> vowelBeginningWords = textObject.getWordsList().stream().filter(word ->
-                VOWELS.indexOf(word.getTextForm().charAt(0)) >= 0).collect(Collectors.toList());
+        List<TextFragment> vowelBeginningWords = textObject.getWordsList().stream()
+                .filter(word -> VOWELS.indexOf(word.getTextForm().charAt(0)) >= 0).collect(Collectors.toList());
 
-        vowelBeginningWords.sort(Comparator.comparing(TextFragment::getTextForm,
-                Comparator.comparing(w -> w.replaceAll("[" + VOWELS + "]", ""))));
+        vowelBeginningWords.sort(Comparator.comparing(TextFragment::getTextForm, Comparator
+                .comparing(w -> w.replaceAll("[" + VOWELS + "]", ""))));
 
         return vowelBeginningWords.stream().map(word -> word.getTextForm() + "\n").collect(Collectors.joining());
     }
