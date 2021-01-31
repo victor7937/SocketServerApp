@@ -30,27 +30,19 @@ public class Text implements TextFragment{
     }
 
     @Override
-    public List<TextFragment> getFragmentsForm() {
-        return sentences;
-    }
+    public List<TextFragment> getFragmentsForm() { return sentences; }
 
     @Override
-    public int fragmentsCount() {
-        return sentences.size();
-    }
+    public int fragmentsCount() { return sentences.size(); }
 
     public List<TextFragment> getWordsList () {
         return sentences.stream().map(TextFragment::getFragmentsForm).
                 flatMap(List<TextFragment>::stream).distinct().collect(Collectors.toList());
     }
 
-    public void addSentence (TextFragment textFragment){
-        sentences.add(textFragment);
-    }
+    public void addSentence (TextFragment textFragment){ sentences.add(textFragment); }
 
-    public void removeSentence (TextFragment textFragment){
-        sentences.remove(textFragment);
-    }
+    public void removeSentence (TextFragment textFragment){ sentences.remove(textFragment); }
 
     @Override
     public boolean equals(Object o) {
@@ -63,7 +55,5 @@ public class Text implements TextFragment{
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(textForm, codeBlocks, sentences);
-    }
+    public int hashCode() { return Objects.hash(textForm, codeBlocks, sentences); }
 }

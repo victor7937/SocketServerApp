@@ -1,4 +1,4 @@
-package by.victor.jwd.server.utils;
+package by.victor.jwd.dao.utils;
 
 import java.io.IOException;
 import java.net.URISyntaxException;

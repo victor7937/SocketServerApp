@@ -4,7 +4,7 @@ import by.victor.jwd.entity.Text;
 import by.victor.jwd.entity.TextFragment;
 import by.victor.jwd.parser.RequestFunction;
 import by.victor.jwd.parser.TextParser;
-import by.victor.jwd.server.utils.PropertyLoader;
+import by.victor.jwd.dao.utils.PropertyLoader;
 
 import java.text.BreakIterator;
 import java.util.Comparator;
@@ -21,9 +21,6 @@ public class SortGivenWordsByFrequency implements RequestFunction {
         BreakIterator boundary = BreakIterator.getWordInstance(Locale.US);
         boundary.setText(params);
         List<String> givenWordsList = TextParser.splitByFragments(boundary, params, WORD_PATTERN);
-        if (givenWordsList.isEmpty()){
-            return "";
-        }
 
         List<String> allWords = textObject.getFragmentsForm().stream().map(TextFragment::toStringList)
                 .flatMap(List<String>::stream).collect(Collectors.toList());

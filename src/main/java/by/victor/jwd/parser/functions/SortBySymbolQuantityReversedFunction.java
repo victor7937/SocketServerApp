@@ -10,13 +10,8 @@ import java.util.stream.Collectors;
 
 public class SortBySymbolQuantityReversedFunction implements RequestFunction {
 
-    private static final int PARAM_LENGTH = 1;
-
     @Override
     public String apply(Text textObject, String params) {
-        if (params.length() != PARAM_LENGTH)
-            return "";
-
         List<TextFragment> words = textObject.getWordsList();
         words.sort(Comparator.comparingLong((TextFragment w) -> w.toStringList().stream()
                 .filter(symbol -> symbol.equals(params)).count()).reversed().thenComparing(TextFragment::getTextForm));

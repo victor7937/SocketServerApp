@@ -15,15 +15,11 @@ public class Sentence implements TextFragment{
         this.words = new LinkedList<>();
     }
 
-    public void setSentenceTextForm(String sentenceTextForm) {
-        this.sentenceTextForm = sentenceTextForm;
-    }
+    public void setSentenceTextForm(String sentenceTextForm) { this.sentenceTextForm = sentenceTextForm; }
 
 
     @Override
-    public String getTextForm() {
-        return sentenceTextForm;
-    }
+    public String getTextForm() { return sentenceTextForm; }
 
     @Override
     public List<String> toStringList() {
@@ -31,22 +27,14 @@ public class Sentence implements TextFragment{
     }
 
     @Override
-    public List<TextFragment> getFragmentsForm() {
-        return words;
-    }
+    public List<TextFragment> getFragmentsForm() { return words; }
 
     @Override
-    public int fragmentsCount() {
-        return words.size();
-    }
+    public int fragmentsCount() { return words.size(); }
 
-    public void addWord (TextFragment textFragment){
-        words.add(textFragment);
-    }
+    public void addWord (TextFragment textFragment){ words.add(textFragment); }
 
-    public void removeWord (TextFragment textFragment){
-        words.remove(textFragment);
-    }
+    public void removeWord (TextFragment textFragment){ words.remove(textFragment); }
 
     @Override
     public boolean equals(Object o) {
@@ -58,7 +46,5 @@ public class Sentence implements TextFragment{
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(sentenceTextForm, words);
-    }
+    public int hashCode() { return Objects.hash(sentenceTextForm, words); }
 }

@@ -2,7 +2,8 @@ package by.victor.jwd.parser;
 
 import by.victor.jwd.entity.*;
 import by.victor.jwd.parser.functions.*;
-import by.victor.jwd.server.utils.PropertyLoader;
+import by.victor.jwd.dao.utils.PropertyLoader;
+import by.victor.jwd.parser.utils.RequestValidator;
 
 import java.text.BreakIterator;
 import java.util.*;
@@ -11,8 +12,9 @@ import java.util.regex.Pattern;
 
 public class TextParser {
 
-    private static Map<Integer, RequestFunction> functionsMap = new HashMap<>();
+    private static final Map<Integer, RequestFunction> functionsMap = new HashMap<>();
 
+    private static final String INVALID_PARAMS_MSG = "Invalid params!";
     private static final String WORD_PATTERN = PropertyLoader.loadProperty("patterns.xml","word");
     private static final String CODE_DELIMITER_PATTERN = PropertyLoader.loadProperty("patterns.xml","code_delimiter");
 
@@ -36,11 +38,10 @@ public class TextParser {
     }
 
     public static String parseByRequest (RequestObject requestObject, String text){
-        if (requestObject.getTaskId()  < 0 || requestObject.getTaskId() > 16) {
-            return "";
+        if (!RequestValidator.validate(requestObject)){
+            return INVALID_PARAMS_MSG;
         }
         Text textObject = createTextObject(text);
-
         return functionsMap.get(requestObject.getTaskId()).apply(textObject, requestObject.getTaskParam());
     }
 

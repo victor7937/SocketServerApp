@@ -9,30 +9,20 @@ public class RequestObject implements Serializable {
     private int taskId;
     private String taskParam = "";
 
-    public RequestObject (int taskId){
-        this.taskId = taskId;
-    }
+    public RequestObject (int taskId) { this.taskId = taskId; }
 
     public RequestObject (int taskId, String taskParam){
         this.taskId = taskId;
         this.taskParam = taskParam;
     }
 
-    public int getTaskId() {
-        return taskId;
-    }
+    public int getTaskId() { return taskId; }
 
-    public void setTaskId(int taskId) {
-        this.taskId = taskId;
-    }
+    public void setTaskId(int taskId) { this.taskId = taskId; }
 
-    public String getTaskParam() {
-        return taskParam;
-    }
+    public String getTaskParam() { return taskParam; }
 
-    public void setTaskParam(String taskParam) {
-        this.taskParam = taskParam;
-    }
+    public void setTaskParam(String taskParam) { this.taskParam = taskParam; }
 
     @Override
     public boolean equals(Object o) {

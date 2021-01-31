@@ -3,7 +3,7 @@ package by.victor.jwd.parser.functions;
 import by.victor.jwd.entity.Text;
 import by.victor.jwd.entity.TextFragment;
 import by.victor.jwd.parser.RequestFunction;
-import by.victor.jwd.server.utils.PropertyLoader;
+import by.victor.jwd.dao.utils.PropertyLoader;
 
 import java.util.LinkedList;
 import java.util.List;

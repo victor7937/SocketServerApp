@@ -1,15 +1,16 @@
 package by.victor.jwd.client;
 
 import by.victor.jwd.entity.RequestObject;
+import org.apache.log4j.Logger;
+
 import java.io.*;
 import java.net.Socket;
-
 
 public class Client {
 
     private static final int port = 4040;
     private static final String hostName = "localhost";
-
+    private final static Logger logger = Logger.getLogger(Client.class);
 
     public Client () {}
 
@@ -23,7 +24,7 @@ public class Client {
             objectOutputStream.flush();
             request = objectInputStream.readUTF();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Exception while interaction with the server: " + e.toString());
         }
 
         return request;
@@ -31,7 +32,12 @@ public class Client {
 
     public static void main(String[] args) {
         Client client = new Client();
-        RequestObject ro = new RequestObject(16, "3, 5, ♂gay website♂");
-        System.out.println(client.sendRequest(ro));
+        System.out.println(client.sendRequest(new RequestObject(16, "3, 5, ♂dungeon master♂")));
+        System.out.println("-------------------------------------");
+        System.out.println(client.sendRequest(new RequestObject(15)));
+        System.out.println("-------------------------------------");
+        System.out.println(client.sendRequest(new RequestObject(10, "this local names idea")));
+        System.out.println("-------------------------------------");
+        System.out.println(client.sendRequest(new RequestObject(4, "5")));
     }
 }

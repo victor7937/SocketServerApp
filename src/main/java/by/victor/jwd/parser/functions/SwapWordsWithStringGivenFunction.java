@@ -3,7 +3,7 @@ package by.victor.jwd.parser.functions;
 import by.victor.jwd.entity.Text;
 import by.victor.jwd.entity.TextFragment;
 import by.victor.jwd.parser.RequestFunction;
-import by.victor.jwd.server.utils.PropertyLoader;
+import by.victor.jwd.dao.utils.PropertyLoader;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -18,21 +18,14 @@ public class SwapWordsWithStringGivenFunction implements RequestFunction {
 
     @Override
     public String apply(Text textObject, String params) {
-        int sentenceNumber;
-        int wordLengthGiven;
-        String stringForReplace;
         Matcher matcher = Pattern.compile(PARAMS_PATTERN).matcher(params);
-        if (matcher.find()){
-            sentenceNumber = Integer.parseInt(matcher.group(1)) - 1;
-            wordLengthGiven = Integer.parseInt(matcher.group(2));
-            stringForReplace = matcher.group(3);
-        }
-        else {
+        matcher.find();
+        int sentenceNumber = Integer.parseInt(matcher.group(1)) - 1;
+        if (sentenceNumber >= textObject.fragmentsCount())
             return "";
-        }
-        if (sentenceNumber >= textObject.fragmentsCount()){
-            return "";
-        }
+
+        int wordLengthGiven = Integer.parseInt(matcher.group(2));
+        String stringForReplace = matcher.group(3);
 
         TextFragment sentence = textObject.getFragmentsForm().get(sentenceNumber);
         List<String> words = sentence.toStringList().stream().filter(word -> (word.length() == wordLengthGiven))
