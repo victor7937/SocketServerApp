@@ -10,7 +10,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TextParser {
+public final class TextParser {
 
     private static final Map<Integer, RequestFunction> functionsMap = new HashMap<>();
 
@@ -94,7 +94,7 @@ public class TextParser {
         for (int end = boundary.next();
              end != BreakIterator.DONE;
              start = end, end = boundary.next()) {
-             fragmentsList.add(source.substring(start,end));
+             fragmentsList.add(source.substring(start,end).strip());
         }
         return fragmentsList;
     }

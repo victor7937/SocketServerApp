@@ -4,6 +4,7 @@ import by.victor.jwd.entity.Text;
 import by.victor.jwd.entity.TextFragment;
 import by.victor.jwd.parser.RequestFunction;
 import by.victor.jwd.dao.utils.PropertyLoader;
+import by.victor.jwd.parser.utils.TextFormatter;
 
 import java.util.List;
 import java.util.regex.Pattern;
@@ -25,9 +26,9 @@ public class SwapFirstWithLastFunction implements RequestFunction {
             String lastWord = words.get(words.size() - 1).getTextForm();
             String changedSentence = Pattern.compile("("+firstWord+")" + MIDDLE_PATTERN + "("+lastWord+")" + END_PATTERN)
                     .matcher(sentence.getTextForm()).replaceAll(REPLACEMENT_PATTERN);
-            textBuilder.append(changedSentence).append("\n");
+            textBuilder.append(changedSentence).append(" ");
         }
 
-        return textBuilder.toString();
+        return TextFormatter.textAlignment(textBuilder.toString());
     }
 }

@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
+    <entry key="spaces">\s+</entry>
+    <entry key="spaces_two_plus">\s{2,}</entry>
     <entry key="word">[a-zA-Z-']+</entry>
     <entry key="code_delimiter">-{3,}</entry>
     <entry key="interrogative">[a-zA-Z-']+\s*\?\s*$</entry>
-    <entry key="middle_sentence">([.[^\.]]+)</entry>
-    <entry key="some_symbols_between">([.[^\.]]*)</entry>
+    <entry key="middle_sentence">(.+)</entry>
+    <entry key="some_symbols_between">(.*)</entry>
     <entry key="end_sentence">(\s*[\.\?!]\s*$)</entry>
     <entry key="after_word">([\s\.\?!,\(\)])</entry>
     <entry key="before_word">([\s\(\),])</entry>
-    <entry key="params16">\s*(\d+)\s*,\s*(\d+)\s*,\s*(.+)</entry>
     <entry key="vowels">aeiouAEIOU</entry>
+    <entry key="help">(\.\s+)([\d]+\s*:)</entry>
+    <entry key="number">\d+</entry>
+    <entry key="letter">[a-zA-Z]</entry>
+
+    <entry key="params11">[.[^\s]]\s+[.[^\s]]</entry>
+    <entry key="params13">(^[^.\s,]+$)</entry>
+    <entry key="params16">\s*(\d+)\s*,\s*(\d+)\s*,\s*(.+)</entry>
 </properties>

@@ -4,6 +4,7 @@ import by.victor.jwd.entity.Text;
 import by.victor.jwd.entity.TextFragment;
 import by.victor.jwd.parser.RequestFunction;
 import by.victor.jwd.dao.utils.PropertyLoader;
+import by.victor.jwd.parser.utils.TextFormatter;
 
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +32,7 @@ public class DeleteFirstAndLastLetterSymbolsFunction implements RequestFunction 
                     .replaceAll("$1" + modifiedWordsMap.get(key) + "$3");
         }
 
-        return fullText;
+        return TextFormatter.textAlignment(fullText);
     }
 
     private static String modifyWord (TextFragment word){

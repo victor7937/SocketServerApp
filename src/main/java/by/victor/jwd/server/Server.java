@@ -4,6 +4,7 @@ import by.victor.jwd.dao.FileDAO;
 import by.victor.jwd.dao.TextFileDAO;
 import by.victor.jwd.entity.RequestObject;
 import by.victor.jwd.parser.TextParser;
+import by.victor.jwd.parser.utils.TextFormatter;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -39,7 +40,10 @@ public class Server extends Thread {
                 RequestObject requestObject = (RequestObject) objectInputStream.readObject();
                 logger.info("RequestObject had been received");
                 FileDAO txtFileDAO = TextFileDAO.getInstance();
-                objectOutputStream.writeUTF(TextParser.parseByRequest(requestObject, txtFileDAO.loadTextString()));
+                if (requestObject.getTaskId() == 0)
+                    objectOutputStream.writeUTF(TextFormatter.helpMsgFormat(txtFileDAO.loadHelperString()));
+                else
+                    objectOutputStream.writeUTF(TextParser.parseByRequest(requestObject, txtFileDAO.loadTextString()));
                 objectOutputStream.flush();
                 logger.info("Server text answer had been sent");
 

@@ -9,20 +9,21 @@ import java.util.function.Function;
 
 public final class RequestValidator {
 
-    private static final String NUMBERS_PATTERN = "\\d+";
-    private static final String LETTER_PATTERN = "[a-zA-Z]";
-    private static final String SYMBOL_PATTERN = "(^[^.\\s,]+$)";
-    private static final String TWO_SYMBOLS_PATTERN = "[.[^\\s]]\\s+[.[^\\s]]";
+    private static final String NUMBER_PATTERN = PropertyLoader.loadProperty("patterns.xml","number");
+    private static final String LETTER_PATTERN = PropertyLoader.loadProperty("patterns.xml","letter");
+    private static final String PARAMS11_PATTERN = PropertyLoader.loadProperty("patterns.xml","params11");
+    private static final String PARAMS13_PATTERN = PropertyLoader.loadProperty("patterns.xml","params13");
     private static final String PARAMS16_PATTERN = PropertyLoader.loadProperty("patterns.xml","params16");
+
     private static final Map<Integer, Function<RequestObject, Boolean>> validatorsMap = new HashMap<>();
 
     static {
-        validatorsMap.put(4, ro -> ro.getTaskParam().matches(NUMBERS_PATTERN));
+        validatorsMap.put(4, ro -> ro.getTaskParam().matches(NUMBER_PATTERN));
         validatorsMap.put(9, ro -> ro.getTaskParam().matches(LETTER_PATTERN));
         validatorsMap.put(10, ro -> !ro.getTaskParam().isEmpty());
-        validatorsMap.put(11, ro -> ro.getTaskParam().matches(TWO_SYMBOLS_PATTERN));
-        validatorsMap.put(12, ro -> ro.getTaskParam().matches(NUMBERS_PATTERN));
-        validatorsMap.put(13, ro -> ro.getTaskParam().matches(SYMBOL_PATTERN));
+        validatorsMap.put(11, ro -> ro.getTaskParam().matches(PARAMS11_PATTERN));
+        validatorsMap.put(12, ro -> ro.getTaskParam().matches(NUMBER_PATTERN));
+        validatorsMap.put(13, ro -> ro.getTaskParam().matches(PARAMS13_PATTERN));
         validatorsMap.put(16, ro -> ro.getTaskParam().matches(PARAMS16_PATTERN));
     }
 

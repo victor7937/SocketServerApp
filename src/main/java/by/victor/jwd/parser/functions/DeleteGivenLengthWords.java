@@ -4,6 +4,7 @@ import by.victor.jwd.entity.Text;
 import by.victor.jwd.entity.TextFragment;
 import by.victor.jwd.parser.RequestFunction;
 import by.victor.jwd.dao.utils.PropertyLoader;
+import by.victor.jwd.parser.utils.TextFormatter;
 
 import java.util.List;
 import java.util.regex.Pattern;
@@ -29,6 +30,6 @@ public class DeleteGivenLengthWords implements RequestFunction {
                     .replaceAll(REPLACEMENT);
         }
 
-        return fullText;
+        return TextFormatter.textAlignment(fullText);
     }
 }

@@ -30,14 +30,26 @@ public class Client {
         return request;
     }
 
+    public String getHelpPage (){
+        RequestObject ro = new RequestObject(0);
+        return sendRequest(ro);
+    }
+
+
     public static void main(String[] args) {
         Client client = new Client();
-        System.out.println(client.sendRequest(new RequestObject(16, "3, 5, ♂dungeon master♂")));
+        System.out.println(client.getHelpPage());
+        System.out.println("-------------------------------------");
+        System.out.println(client.sendRequest(new RequestObject(16, "3, 5, java")));
         System.out.println("-------------------------------------");
         System.out.println(client.sendRequest(new RequestObject(15)));
         System.out.println("-------------------------------------");
-        System.out.println(client.sendRequest(new RequestObject(10, "this local names idea")));
+        System.out.println(client.sendRequest(new RequestObject(10, "idea local names the")));
         System.out.println("-------------------------------------");
         System.out.println(client.sendRequest(new RequestObject(4, "5")));
+        System.out.println("-------------------------------------");
+        System.out.println(client.sendRequest(new RequestObject(5)));
+        System.out.println("-------------------------------------");
+        System.out.println(client.sendRequest(new RequestObject(11, "a s")));
     }
 }
