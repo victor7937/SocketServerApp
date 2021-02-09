@@ -6,7 +6,7 @@ import org.apache.log4j.Logger;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public class TextFileDAO implements FileDAO {
+public final class TextFileDAO implements FileDAO {
 
     private static final String FILE_NAME_TEXT = "text.txt";
     private static final String FILE_NAME_HELPER = "helper.txt";

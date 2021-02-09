@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class PropertyLoader {
+public final class PropertyLoader {
 
     private final static Logger logger = Logger.getLogger(PropertyLoader.class);
 
@@ -20,14 +20,18 @@ public class PropertyLoader {
             InputStream is = classloader.getResourceAsStream(fileName);
             properties.loadFromXML(is);
         } catch (IOException e) {
-            logger.error("Exception while loading properties from " + fileName +
-                    " with key " + key + " :"+ e.toString());
+            logger.error("Exception while loading properties from " + fileName + " with key " + key + " :"+ e.toString());
             errorKey = true;
         }
         if (errorKey) {
-           return null;
+           return "";
         }
 
+        String property = properties.getProperty(key);
+        if (property == null){
+            logger.error("Error while loading properties from " + fileName + " with key " + key);
+            return "";
+        }
         return properties.getProperty(key);
     }
 }

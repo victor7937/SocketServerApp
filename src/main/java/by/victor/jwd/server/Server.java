@@ -40,10 +40,12 @@ public class Server extends Thread {
                 RequestObject requestObject = (RequestObject) objectInputStream.readObject();
                 logger.info("RequestObject had been received");
                 FileDAO txtFileDAO = TextFileDAO.getInstance();
-                if (requestObject.getTaskId() == 0)
+                if (requestObject.getTaskId() == 0) {
                     objectOutputStream.writeUTF(TextFormatter.helpMsgFormat(txtFileDAO.loadHelperString()));
-                else
+                }
+                else {
                     objectOutputStream.writeUTF(TextParser.parseByRequest(requestObject, txtFileDAO.loadTextString()));
+                }
                 objectOutputStream.flush();
                 logger.info("Server text answer had been sent");
 
