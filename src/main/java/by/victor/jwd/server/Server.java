@@ -4,7 +4,7 @@ import by.victor.jwd.dao.FileDAO;
 import by.victor.jwd.dao.TextFileDAO;
 import by.victor.jwd.entity.RequestObject;
 import by.victor.jwd.parser.TextParser;
-import by.victor.jwd.parser.utils.TextFormatter;
+import by.victor.jwd.parser.util.TextFormatter;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;

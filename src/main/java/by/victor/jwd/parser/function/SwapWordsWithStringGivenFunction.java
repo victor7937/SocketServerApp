@@ -1,9 +1,9 @@
-package by.victor.jwd.parser.functions;
+package by.victor.jwd.parser.function;
 
 import by.victor.jwd.entity.Text;
 import by.victor.jwd.entity.TextFragment;
 import by.victor.jwd.parser.RequestFunction;
-import by.victor.jwd.dao.utils.PropertyLoader;
+import by.victor.jwd.dao.util.PropertyLoader;
 
 import java.util.List;
 import java.util.regex.Matcher;

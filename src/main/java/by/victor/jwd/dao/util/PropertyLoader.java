@@ -1,4 +1,4 @@
-package by.victor.jwd.dao.utils;
+package by.victor.jwd.dao.util;
 
 import org.apache.log4j.Logger;
 

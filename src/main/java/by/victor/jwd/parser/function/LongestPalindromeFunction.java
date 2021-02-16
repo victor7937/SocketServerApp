@@ -1,4 +1,4 @@
-package by.victor.jwd.parser.functions;
+package by.victor.jwd.parser.function;
 
 import by.victor.jwd.entity.Text;
 import by.victor.jwd.parser.RequestFunction;

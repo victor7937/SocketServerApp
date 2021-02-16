@@ -1,6 +1,6 @@
 package by.victor.jwd.dao;
 
-import by.victor.jwd.dao.utils.FileReader;
+import by.victor.jwd.dao.util.FileReader;
 
 public final class TextFileDAO implements FileDAO {
 

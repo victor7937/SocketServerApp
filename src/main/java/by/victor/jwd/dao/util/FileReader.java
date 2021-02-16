@@ -1,6 +1,5 @@
-package by.victor.jwd.dao.utils;
+package by.victor.jwd.dao.util;
 
-import by.victor.jwd.dao.TextFileDAO;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;

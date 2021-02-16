@@ -1,9 +1,9 @@
 package by.victor.jwd.parser;
 
 import by.victor.jwd.entity.*;
-import by.victor.jwd.parser.functions.*;
-import by.victor.jwd.dao.utils.PropertyLoader;
-import by.victor.jwd.parser.utils.RequestValidator;
+import by.victor.jwd.parser.function.*;
+import by.victor.jwd.dao.util.PropertyLoader;
+import by.victor.jwd.parser.util.RequestValidator;
 
 import java.text.BreakIterator;
 import java.util.*;

@@ -1,6 +1,6 @@
-package by.victor.jwd.parser.utils;
+package by.victor.jwd.parser.util;
 
-import by.victor.jwd.dao.utils.PropertyLoader;
+import by.victor.jwd.dao.util.PropertyLoader;
 import by.victor.jwd.entity.RequestObject;
 
 import java.util.HashMap;
