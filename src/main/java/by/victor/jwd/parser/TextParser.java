@@ -15,6 +15,7 @@ public final class TextParser {
     private static final Map<Integer, RequestFunction> functionsMap = new HashMap<>();
 
     private static final String INVALID_PARAMS_MSG = "Invalid params!";
+    private static final String TXT_NOT_FOUND_MSG = "Text not found!";
     private static final String WORD_PATTERN = PropertyLoader.loadProperty("patterns.xml","word");
     private static final String CODE_DELIMITER_PATTERN = PropertyLoader.loadProperty("patterns.xml","code_delimiter");
 
@@ -40,6 +41,9 @@ public final class TextParser {
     public static String parseByRequest (RequestObject requestObject, String text){
         if (!RequestValidator.validate(requestObject)){
             return INVALID_PARAMS_MSG;
+        }
+        if (text.isEmpty()) {
+            return TXT_NOT_FOUND_MSG;
         }
         Text textObject = createTextObject(text);
         return functionsMap.get(requestObject.getTaskId()).apply(textObject, requestObject.getTaskParam());
